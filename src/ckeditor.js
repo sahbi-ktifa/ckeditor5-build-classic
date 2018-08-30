@@ -5,6 +5,7 @@
 
 // The editor creator to use.
 import ClassicEditorBase from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
+import XMLDataProcessor from '@ckeditor/ckeditor5-engine/src/dataprocessor/xmldataprocessor';
 
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import UploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter';
@@ -23,7 +24,14 @@ import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 
-export default class ClassicEditor extends ClassicEditorBase {}
+export default class ClassicEditor extends ClassicEditorBase {
+	
+	constructor( element, config ) {
+		super( element, config );
+
+		this.data.processor = new XMLDataProcessor();
+	}
+}
 
 // Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
